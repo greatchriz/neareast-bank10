@@ -83,38 +83,32 @@
                     <ul id="iq-sidebar-toggle" class="iq-menu">
 
 
-                        <li
-                        @if (request()->is('dashboard'))
-
-                                class="active"
-                            @endif
-                        >
+                        <li @if (request()->is('dashboard')) class="active" @endif>
                             <a href="/dashboard" class="iq-waves-effect"><i
-                                  class="las la-home iq-arrow-left"></i><span>Dashboard</span></a>
-                         </li>
+                                    class="las la-home iq-arrow-left"></i><span>Dashboard</span></a>
+                        </li>
 
-                        <li
-                        @if (request()->is('transfers'))
-                                class="active"
-                            @endif
-                        >
+                        <li @if (request()->is('transfers')) class="active" @endif>
                             <a href="/transfers" class="iq-waves-effect"><i
                                     class="las la-exchange-alt iq-arrow-left"></i><span>Transfer</span></a>
                         </li>
 
-                        <li
-                        @if (request()->is('loans'))
-                                class="active"
-                            @endif
-                        >
+                        <li @if (request()->is('loans')) class="active" @endif>
                             <a href="calendar.html" class="iq-waves-effect"><i
                                     class="las la-donate iq-arrow-left"></i><span>Loan</span></a>
                         </li>
 
 
                         <li>
-                            <a href="calendar.html" class="iq-waves-effect"><i
-                                    class="las la-sign-out-alt iq-arrow-left"></i><span>Logout</span></a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a href="route('logout')" class="iq-waves-effect"
+                                    onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    <i class="las la-sign-out-alt iq-arrow-left"></i><span>Logout</span>
+                                </a>
+                            </form>
                         </li>
 
                     </ul>
@@ -156,8 +150,7 @@
                                         class="ripple rippleEffect"
                                         style="width: 98px; height: 98px; top: -15px; left: 56.2969px;"></span><img
                                         src="/dash/images/small/flag-01.png" alt="img-flaf" class="img-fluid mr-1"
-                                        style="height: 16px; width: 16px;"> EN <i
-                                        class="ri-arrow-down-s-line"></i></a>
+                                        style="height: 16px; width: 16px;"> EN <i class="ri-arrow-down-s-line"></i></a>
                                 <div class="iq-sub-dropdown">
                                     <a class="iq-sub-card" href="#"><img src="/dash/images/small/flag-02.png"
                                             alt="img-flaf" class="img-fluid mr-2">French</a>
