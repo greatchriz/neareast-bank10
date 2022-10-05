@@ -108,22 +108,68 @@
                         <h1 class="mb-0 text-center">Sign Up</h1>
                         <p class="text-center text-dark">Enter your email address and password to access admin
                             panel.</p>
-                        <form class="mt-4">
+                        <form method="POST" action="{{ route('register') }}" class="mt-4">
+                            @csrf
+
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Your Full Name</label>
+
+                                <x-input-label for="name" :value="__('Name')" />
+
+                                <x-text-input id="name" class="form-control mb-0" type="text" name="name" :value="old('name')" required autofocus />
+
+                                <x-input-error :messages="$errors->get('name')" class="mt-2 text-danger" />
+
+                                {{-- <label for="exampleInputEmail1">Your Full Name</label>
                                 <input type="email" class="form-control mb-0" id="exampleInputEmail1"
-                                    placeholder="Your Full Name">
+                                    placeholder="Your Full Name"> --}}
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail2">Email address</label>
+
+                                <x-input-label for="email" :value="__('Email')" />
+
+                                <x-text-input id="email" class="form-control mb-0" type="email" name="email" :value="old('email')" required />
+
+                                <x-input-error :messages="$errors->get('email')" class="mt-2 text-danger" />
+
+                                {{-- <label for="exampleInputEmail2">Email address</label>
                                 <input type="email" class="form-control mb-0" id="exampleInputEmail2"
-                                    placeholder="Enter email">
+                                    placeholder="Enter email"> --}}
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Password</label>
+
+                                <x-input-label for="password" :value="__('Password')" />
+
+                                <x-text-input id="password" class="form-control mb-0"
+                                                type="password"
+                                                name="password"
+                                                required autocomplete="new-password" />
+
+                                <x-input-error :messages="$errors->get('password')" class="text-danger mt-2" />
+
+                                {{-- <label for="exampleInputPassword1">Password</label>
                                 <input type="password" class="form-control mb-0" id="exampleInputPassword1"
-                                    placeholder="Password">
+                                    placeholder="Password"> --}}
                             </div>
+
+                            <div class="form-group">
+
+                                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                                <x-text-input id="password_confirmation" class="form-control mb-0"
+                                                type="password"
+                                                name="password_confirmation" required />
+
+                                <x-input-error :messages="$errors->get('password_confirmation')" class="text-danger mt-2" />
+
+                                {{-- <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control mb-0" id="exampleInputPassword1"
+                                    placeholder="Password"> --}}
+                            </div>
+
+
+
+
+
                             <div class="d-inline-block w-100">
                                 <div class="custom-control custom-checkbox d-inline-block mt-2 pt-1">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1">
