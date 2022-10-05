@@ -108,7 +108,7 @@
                         <h1 class="mb-0 text-center">Sign Up</h1>
                         <p class="text-center text-dark">Enter your email address and password to access admin
                             panel.</p>
-                        <form method="POST" action="{{ route('register') }}" class="mt-4">
+                        <form method="POST" action="{{ route('register') }}" class="mt-4" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
@@ -165,6 +165,29 @@
                                 <input type="password" class="form-control mb-0" id="exampleInputPassword1"
                                     placeholder="Password"> --}}
                             </div>
+
+                            <div class="form-group">
+
+                                {{-- <div class="form-group">
+                                    <label for="exampleFormControlFile1">Example file input</label>
+                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                 </div> --}}
+
+                                <x-input-label for="file" :value="__('File')" />
+
+                                <x-text-input id="email" class="form-control-file mb-0" type="file" name="imageUpload" :value="old('file')" required accept="image/*"/>
+
+                                <x-input-error :messages="$errors->get('file')" class="mt-2 text-danger" />
+
+                                {{-- <label for="exampleInputEmail2">Email address</label>
+                                <input type="email" class="form-control mb-0" id="exampleInputEmail2"
+                                    placeholder="Enter email"> --}}
+                            </div>
+
+                            {{-- <div class="mt-4">
+                                <label for="imageUpload" class="font-semibold block">Image Upload</label>
+                                <input type="file" name="imageUpload" class="mt-2" accept="image/*">
+                            </div> --}}
 
 
 

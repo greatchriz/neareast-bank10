@@ -317,7 +317,14 @@
                     <ul class="navbar-list">
                         <li class="line-height">
                             <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center">
+
+                                @if (auth()->user()->imageUpload)
+                                    <img src="/storage/{{ auth()->user()->imageUpload }}" alt="image" class="img-fluid rounded mr-3">
+                                @else
                                 <img src="/dash/images/user/1.jpg" class="img-fluid rounded mr-3" alt="user">
+                                @endif
+
+
                                 <div class="caption">
                                     <h6 class="mb-0 line-height">Barry Tech</h6>
                                     <p class="mb-0">Manager</p>
