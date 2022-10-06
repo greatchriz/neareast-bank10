@@ -12,18 +12,31 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function generate_account_number() {
+        $number = mt_rand(3000000000, 3900000000);
+        return $number;
+    }
+
+    public function account()
+    {
+        $number = $this->generate_account_number();
+
+        $numberExist = User::where('id', $number)->first();
+
+        if ($numberExist) {
+            $this->generate_account_number();
+        }
+
+        return $number;
+
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'imageUpload',
-
-    ];
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

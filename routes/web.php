@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\TransferController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,8 +23,6 @@ Route::get('/', function () {
 
 Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';

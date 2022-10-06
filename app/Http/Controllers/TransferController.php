@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transfer;
+use App\Models\User;
 use App\Http\Requests\StoreTransferRequest;
 use App\Http\Requests\UpdateTransferRequest;
 
 class TransferController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

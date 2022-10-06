@@ -1,5 +1,29 @@
 <x-guest-layout>
-    <x-auth-card>
+
+    <div class="sign-in-from">
+        <h1 class="mb-0">Reset Password</h1>
+        <p class="text-dark">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+        <form method="POST" action="{{ route('password.email') }}" class="mt-4">
+            @csrf
+
+            <div class="form-group">
+                <x-input-label for="email" :value="__('Email')" />
+                <x-text-input id="email" class="form-control mb-0" type="email" name="email" :value="old('email')" required autofocus />
+
+                <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
+                {{-- <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control mb-0" id="exampleInputEmail1" placeholder="Enter email"> --}}
+            </div>
+
+            <div class="d-inline-block w-100">
+
+                <button type="submit" class="btn btn-light float-right">Reset Password</button>
+            </div>
+
+        </form>
+    </div>
+    {{-- <x-auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -31,5 +55,5 @@
                 </x-primary-button>
             </div>
         </form>
-    </x-auth-card>
+    </x-auth-card> --}}
 </x-guest-layout>

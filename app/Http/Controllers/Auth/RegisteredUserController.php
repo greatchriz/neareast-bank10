@@ -32,17 +32,17 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
-        $user = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'imageUpload' =>['file', 'image', 'max:20000'],
+            'profilePicture' =>['file', 'image', 'max:20000'],
         ]);
 
-        if ($request->imageUpload) {
-            $requestImage = $request->file('imageUpload');
+        if ($request->profilePicture) {
+            $requestImage = $request->file('profilePicture');
 
             $image = Image::make($requestImage);
 
@@ -60,11 +60,14 @@ class RegisteredUserController extends Controller
             // $fields = array_merge($fields, ['imageUpload' => $path]);
         }
 
-        $user = User::create([
+        $account_number = $user->account();
+
+        $user = $user->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'imageUpload' => $requestImage->hashName(),
+            'profilePicture' => $requestImage->hashName(),
+            'account_number' => $account_number,
         ]);
         // $user = User::create($user);
 

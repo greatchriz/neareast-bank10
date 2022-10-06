@@ -1,11 +1,6 @@
 <x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
 
+    <div class="sign-in-from">
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
 
@@ -47,5 +42,5 @@
                 </x-primary-button>
             </div>
         </form>
-    </x-auth-card>
+    </div>
 </x-guest-layout>
