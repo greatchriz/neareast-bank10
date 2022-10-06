@@ -19,22 +19,23 @@
 
 
 <x-app-layout>
-    <x-users.detail-card :user="$user" title="Account Number">
-        <i class="las la-book"></i>
-    </x-users.detail-card>
 
-    <x-users.detail-card :user="$user" title="User Name">
-        <i class="las la-user"></i>
-    </x-users.detail-card>
-
-    <x-users.detail-card :user="$user" title="Date Joined">
-        <i class="las la-calendar"></i>
-    </x-users.detail-card>
-
-
-    <x-users.balance-card type="box1" title="Account Balance" :balance="$user->balance->account_balance">
+    <x-users.balance-card type="box1" title="Account Number" :balance="$user->account_number">
         <i class="ri-focus-2-line"></i>
     </x-users.balance-card>
+
+    <x-users.balance-card type="box2" title="Account Name" :balance="$user->name">
+        <i class="ri-focus-2-line"></i>
+    </x-users.balance-card>
+
+    <x-users.balance-card type="box3" title="Date Joined" :balance="Carbon\Carbon::parse($user->created_at)->toFormattedDateString()">
+        <i class="ri-focus-2-line"></i>
+    </x-users.balance-card>
+
+
+    {{-- <x-users.balance-card type="box1" title="Account Balance" :balance="$user->balance->account_balance">
+        <i class="ri-focus-2-line"></i>
+    </x-users.balance-card> --}}
 
     <x-users.balance-card type="box2" title="Loan Balance" :balance="$user->balance->loan_balance">
         <i class="ri-pantone-line"></i>
@@ -312,8 +313,8 @@
                                 <tr>
                                     <td>{{ $history->created_at }}</td>
                                     <td><i class="ri-briefcase-fill mr-2 iq-bg-success p-2 rounded"></i>{{ $history->subject_type }}</td>
-                                    <td>{{ $history->subject->account_balance }}</td>
-                                    <td>{{ $history->subject->account_balance }}</td>
+                                    {{-- <td>{{ $history->subject->account_balance }}</td>
+                                    <td>{{ $history->subject->account_balance }}</td> --}}
                                     <td><i class="ri-file-fill text-primary font-size-18"></i></td>
                                 </tr>
                             @endforeach
