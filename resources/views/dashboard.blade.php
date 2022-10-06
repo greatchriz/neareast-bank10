@@ -16,6 +16,8 @@
     </div>
 </x-app-layout> --}}
 
+
+
 <x-app-layout>
     <x-users.detail-card :user="$user" title="Account Number">
         <i class="las la-book"></i>
@@ -30,13 +32,29 @@
     </x-users.detail-card>
 
 
-    <x-latest-card type="box1" title="Total Transfer" />
+    <x-users.balance-card type="box1" title="Account Balance" :balance="$user->balance->account_balance">
+        <i class="ri-focus-2-line"></i>
+    </x-users.balance-card>
 
-    <x-latest-card type="box2" title="Fixed Deposit Balance" />
+    <x-users.balance-card type="box2" title="Loan Balance" :balance="$user->balance->loan_balance">
+        <i class="ri-pantone-line"></i>
+    </x-users.balance-card>
 
-    <x-latest-card type="box3" title="Total Loan Amount" />
+    <x-users.balance-card type="box3" title="Fixed Deposit Balance" :balance="$user->balance->fixed_deposit_balance">
+        <i class="ri-database-2-line"></i>
+    </x-users.balance-card>
 
-    <x-latest-card type="box4" title="Account Balance" />
+    <x-users.balance-card type="box4" title="Total Funds Transfered" :balance="$user->balance->total_transfer_funds">
+        <i class="ri-pie-chart-2-line"></i>
+    </x-users.balance-card>
+
+    <x-users.balance-card type="box5" title="Total Loan Funds" :balance="$user->balance->total_loan_funds">
+        <i class="ri-focus-2-line"></i>
+    </x-users.balance-card>
+
+    <x-users.balance-card type="box6" title="Total Funds Deposited" :balance="$user->balance->total_fixed_deposit_funds">
+        <i class="ri-focus-2-line"></i>
+    </x-users.balance-card>
 
 
 
@@ -290,52 +308,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>18/10/2019</td>
-                                <td><i class="ri-briefcase-fill mr-2 iq-bg-success p-2 rounded"></i>Salary</td>
-                                <td>*4567</td>
-                                <td>+$52,000.00</td>
-                                <td><i class="ri-file-fill text-primary font-size-18"></i></td>
-                            </tr>
-                            <tr>
-                                <td>26/10/2019</td>
-                                <td><i class="ri-briefcase-fill mr-2 iq-bg-warning p-2 rounded"></i>Taxes</td>
-                                <td>*5689</td>
-                                <td>+$40,200.80</td>
-                                <td><i class="ri-file-fill text-primary font-size-18"></i></td>
-                            </tr>
-                            <tr>
-                                <td>18/11/2019</td>
-                                <td><i class="ri-briefcase-fill mr-2 iq-bg-info p-2 rounded"></i>I return your money
-                                </td>
-                                <td>*7845</td>
-                                <td>+$6000.02</td>
-                                <td><i class="ri-file-fill text-primary font-size-18"></i></td>
-                            </tr>
-                            <tr>
-                                <td>14/12/2019</td>
-                                <td><i class="ri-briefcase-fill mr-2 iq-bg-danger p-2 rounded"></i>Grocery store
-                                </td>
-                                <td>*1761</td>
-                                <td>+$7236.00</td>
-                                <td><i class="ri-file-fill text-primary font-size-18"></i></td>
-                            </tr>
-                            <tr>
-                                <td>24/12/2019</td>
-                                <td><i class="ri-briefcase-fill mr-2 iq-bg-primary p-2 rounded"></i>Debit by ATM
-                                </td>
-                                <td>*2494</td>
-                                <td>+$50.00</td>
-                                <td><i class="ri-file-fill text-primary font-size-18"></i></td>
-                            </tr>
-                            <tr>
-                                <td>18/10/2019</td>
-                                <td><i class="ri-briefcase-fill mr-2 iq-bg-success p-2 rounded"></i>Credit Amount
-                                </td>
-                                <td>*4594</td>
-                                <td>+$1000.00</td>
-                                <td><i class="ri-file-fill text-primary font-size-18"></i></td>
-                            </tr>
+                            @foreach ($user->histories as $history)
+                                <tr>
+                                    <td>{{ $history->created_at }}</td>
+                                    <td><i class="ri-briefcase-fill mr-2 iq-bg-success p-2 rounded"></i>{{ $history->subject_type }}</td>
+                                    <td>{{ $history->subject->account_balance }}</td>
+                                    <td>{{ $history->subject->account_balance }}</td>
+                                    <td><i class="ri-file-fill text-primary font-size-18"></i></td>
+                                </tr>
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
