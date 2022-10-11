@@ -24,5 +24,6 @@ Route::get('/', function () {
 Route::get('/transfers', [TransferController::class, 'index'])->name('transfers.index');
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/account', [DashboardController::class, 'account']);
 
 require __DIR__.'/auth.php';

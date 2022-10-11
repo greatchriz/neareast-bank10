@@ -14,23 +14,15 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    public function generate_account_number() {
-        $number = mt_rand(3000000000, 3900000000);
-        return $number;
-    }
-
     public function account()
     {
-        $number = $this->generate_account_number();
+        $number = mt_rand(3000000000, 3900000000);
 
-        $numberExist = User::where('id', $number)->first();
-
-        if ($numberExist) {
-            $this->generate_account_number();
+        if (User::where('account_number', $number)->first()) {
+            $number = mt_rand(3000000000, 3900000000);
         }
 
         return $number;
-
     }
 
     /**
