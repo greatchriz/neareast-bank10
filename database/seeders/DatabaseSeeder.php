@@ -19,9 +19,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // User::factory(4)->create();
-
-        $user = User::factory()->create([
+        User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => Hash::make('password'),
@@ -29,13 +27,17 @@ class DatabaseSeeder extends Seeder
             'account_number' => '3800000000',
         ]);
 
-        $balances = Balance::factory(20)->create([
-            'user_id' => $user->id
-        ]);
+        User::factory(6)->create();
 
-        foreach ($balances as $balance) {
-            $history = $balance->recordHistory();
-        }
+
+
+        // $balances = Balance::factory(20)->create([
+        //     'user_id' => $user->id
+        // ]);
+
+        // foreach ($balances as $balance) {
+        //     $history = $balance->recordHistory();
+        // }
 
 
 
