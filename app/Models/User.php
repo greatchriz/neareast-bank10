@@ -18,6 +18,7 @@ class User extends Authenticatable
     {
         $number = mt_rand(3000000000, 3900000000);
 
+
         if (User::where('account_number', $number)->first()) {
             $number = mt_rand(3000000000, 3900000000);
         }
